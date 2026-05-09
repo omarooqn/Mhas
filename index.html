@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام المحاسبة الصارم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- لوحة التحكم العلوية الشاملة -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="main-status">
+                <h2>النتيجة النهائية</h2>
+                <div id="total-score" class="score-value">0</div>
+                <div id="status-badge" class="badge badge-loser">خاسر</div>
+            </div>
+            
+            <div class="sub-scores-grid">
+                <div class="sub-score"><span>الفرائض</span><strong id="score-faraid">0</strong></div>
+                <div class="sub-score"><span>السنن</span><strong id="score-sunan">0</strong></div>
+                <div class="sub-score"><span>الأذكار</span><strong id="score-adhkar">0</strong></div>
+                <div class="sub-score"><span>القربات</span><strong id="score-qurbat">0</strong></div>
+            </div>
+        </div>
+        
+        <!-- منطقة الإنذارات الخطيرة -->
+        <div id="alert-kufr" class="alert-box alert-kufr" style="display: none;">
+            ⚠️ تحذير شديد: ارتكبت كفر مخرج من الملة (تارك الصلاة)! تب إلى الله فوراً.
+        </div>
+        <div id="alert-danger" class="alert-box alert-danger" style="display: none;">
+            ⚠️ أنت على خطر: لقد ارتكبت إثماً عظيماً اليوم، سارع بالاستغفار.
+        </div>
+    </header>
+
+    <main class="app-container">
+        
+        <!-- 1. قسم الفرائض -->
+        <section class="card category-faraid">
+            <h2>الفرائض (مؤشر النجاة)</h2>
+            <div class="prayer-grid">
+                <div class="input-group">
+                    <label>الفجر</label>
+                    <select class="calc-input" data-category="faraid">
+                        <option value="0">لم تقيم بعد</option>
+                        <option value="110">مسجد + أذان (110)</option>
+                        <option value="105">مسجد + قبل الإقامة (105)</option>
+                        <option value="100">مسجد جماعة (100)</option>
+                        <option value="50">منزل بدون عذر (50)</option>
+                        <option value="20">تأخير لآخر الوقت (20)</option>
+                        <option value="-200">تفويت الصلاة (-200)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>الظهر</label>
+                    <select class="calc-input" data-category="faraid">
+                        <option value="0">لم تقيم بعد</option>
+                        <option value="110">مسجد + أذان (110)</option>
+                        <option value="105">مسجد + قبل الإقامة (105)</option>
+                        <option value="100">مسجد جماعة (100)</option>
+                        <option value="50">منزل بدون عذر (50)</option>
+                        <option value="20">تأخير لآخر الوقت (20)</option>
+                        <option value="-200">تفويت الصلاة (-200)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>العصر</label>
+                    <select class="calc-input" data-category="faraid">
+                        <option value="0">لم تقيم بعد</option>
+                        <option value="110">مسجد + أذان (110)</option>
+                        <option value="105">مسجد + قبل الإقامة (105)</option>
+                        <option value="100">مسجد جماعة (100)</option>
+                        <option value="50">منزل بدون عذر (50)</option>
+                        <option value="20">تأخير لآخر الوقت (20)</option>
+                        <option value="-200">تفويت الصلاة (-200)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>المغرب</label>
+                    <select class="calc-input" data-category="faraid">
+                        <option value="0">لم تقيم بعد</option>
+                        <option value="110">مسجد + أذان (110)</option>
+                        <option value="105">مسجد + قبل الإقامة (105)</option>
+                        <option value="100">مسجد جماعة (100)</option>
+                        <option value="50">منزل بدون عذر (50)</option>
+                        <option value="20">تأخير لآخر الوقت (20)</option>
+                        <option value="-200">تفويت الصلاة (-200)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>العشاء</label>
+                    <select class="calc-input" data-category="faraid">
+                        <option value="0">لم تقيم بعد</option>
+                        <option value="110">مسجد + أذان (110)</option>
+                        <option value="105">مسجد + قبل الإقامة (105)</option>
+                        <option value="100">مسجد جماعة (100)</option>
+                        <option value="50">منزل بدون عذر (50)</option>
+                        <option value="20">تأخير لآخر الوقت (20)</option>
+                        <option value="-200">تفويت الصلاة (-200)</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. قسم السنن الرواتب (مفصلة) -->
+        <section class="card category-sunan">
+            <h2>السنن الرواتب (12 ركعة)</h2>
+            <div class="checkbox-list">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="calc-input" data-category="sunan" value="20"> راتبة الفجر (ركعتان) [+20]
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="calc-input" data-category="sunan" value="60"> راتبة الظهر (4 قبل، 2 بعد) [+60]
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="calc-input" data-category="sunan" value="20"> راتبة المغرب (ركعتان) [+20]
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="calc-input" data-category="sunan" value="20"> راتبة العشاء (ركعتان) [+20]
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </section>
+
+        <!-- 3. قسم القربات الإضافية -->
+        <section class="card category-qurbat">
+            <h2>قربات ونوافل أخرى</h2>
+            <div class="checkbox-list">
+                <label class="checkbox-container">
+                    <input type="checkbox" class="calc-input" data-category="qurbat" value="40"> صلاة الوتر [+40]
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="calc-input" data-category="qurbat" value="30"> صلاة الضحى [+30]
+                    <span class="checkmark"></span>
+                </label>
+                <label class="checkbox-container">
+                    <input type="checkbox" class="calc-input" data-category="qurbat" value="60"> قراءة ورد القرآن [+60]
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </section>
+
+        <!-- 4. قسم العدادات المفتوحة والمغلقة -->
+        <section class="card category-counters">
+            <h2>عدادات الأذكار (20 نقطة لكل 100)</h2>
+            <div class="counters-grid">
+                <!-- العداد الثابت -->
+                <div class="counter-box" onclick="incrementCounter('fixed')">
+                    <h3>تسبيح / استغفار / صلاة ع النبي</h3>
+                    <div class="counter-circle" id="count-fixed">0</div>
+                    <p style="margin-top:10px; font-size:0.8rem;">انقر للعد</p>
+                </div>
+                
+                <!-- العداد المفتوح -->
+                <div class="counter-box">
+                    <input type="text" id="custom-dhikr-name" placeholder="اكتب ذكراً مخصصاً هنا..." class="custom-dhikr-input">
+                    <div class="counter-circle" id="count-custom" onclick="incrementCounter('custom')" style="margin-top:10px; cursor:pointer;">0</div>
+                    <p style="margin-top:10px; font-size:0.8rem;">انقر للعد</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. الأعمال الحرة (إضافة يدوية) -->
+        <section class="card category-custom-actions">
+            <h2>إضافة عمل حر (تقييم ذاتي)</h2>
+            <div class="custom-action-form">
+                <input type="text" id="action-name" placeholder="اسم العمل (مثال: صدقة، غضب شديد...)" class="input-text">
+                <select id="action-type" class="input-select">
+                    <option value="good">عمل صالح (إضافة نقاط)</option>
+                    <option value="bad">عمل سيء (خصم نقاط)</option>
+                </select>
+                <input type="number" id="action-points" placeholder="الدرجة المقترحة (مثال: 50)" class="input-number">
+                <button onclick="addCustomAction()" class="btn-add">إضافة للرصيد</button>
+            </div>
+            <div id="custom-actions-list" class="custom-actions-list">
+                <!-- ستظهر الأعمال المضافة هنا -->
+            </div>
+        </section>
+
+        <!-- 6. قسم المنهيات (الكبائر) -->
+        <section class="card category-sins">
+            <h2>المنهيات والمخالفات (منطقة الخطر)</h2>
+            <div class="checkbox-list">
+                <label class="checkbox-container danger">
+                    <input type="checkbox" class="calc-input" data-category="sins" data-is-kabeera="true" value="-100"> الكذب المتعمد (-100)
+                    <span class="checkmark danger-check"></span>
+                </label>
+                <label class="checkbox-container danger">
+                    <input type="checkbox" class="calc-input" data-category="sins" data-is-kabeera="true" value="-100"> الغيبة أو النميمة (-100)
+                    <span class="checkmark danger-check"></span>
+                </label>
+                <label class="checkbox-container danger">
+                    <input type="checkbox" class="calc-input" data-category="sins" data-is-kabeera="true" value="-200"> عقوق الوالدين (-200)
+                    <span class="checkmark danger-check"></span>
+                </label>
+                <label class="checkbox-container danger">
+                    <input type="checkbox" class="calc-input" data-category="sins" value="-30"> إضاعة الوقت بلا فائدة (-30)
+                    <span class="checkmark danger-check"></span>
+                </label>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>
