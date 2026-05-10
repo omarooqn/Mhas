@@ -1,6 +1,4 @@
-/* =========================================
-   1. المتغيرات (الألوان الأساسية - الوضع الليلي الافتراضي)
-========================================= */
+/* المتغيرات والوضع الليلي/النهاري */
 :root {
     --bg-color: #0f172a;
     --card-bg: #1e293b;
@@ -17,9 +15,6 @@
     --gold: #fbbf24;
 }
 
-/* =========================================
-   2. الوضع النهاري (Light Mode)
-========================================= */
 body.light-mode {
     --bg-color: #f1f5f9;
     --card-bg: #ffffff;
@@ -32,16 +27,15 @@ body.light-mode {
     --danger-dark: #dc2626;
 }
 
-/* الإعدادات العامة */
 * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Tajawal', sans-serif; }
 body { background-color: var(--bg-color); color: var(--text-main); padding-bottom: 60px; transition: background-color 0.3s ease, color 0.3s ease; }
 
 /* لوحة التحكم العلوية */
 .app-header { background: var(--card-bg); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: 0.3s; }
 .header-content { max-width: 800px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
-.header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+.header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
 .top-buttons { display: flex; gap: 10px; align-items: center; }
-.date-text { color: var(--text-main); font-size: 1rem; font-weight: 900; }
+.date-text { color: var(--text-main); font-size: 1rem; font-weight: 900; transition: 0.3s; }
 
 .main-status { text-align: center; }
 .score-value { font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin: 10px 0; }
@@ -111,6 +105,12 @@ button { cursor: pointer; transition: all 0.3s ease; display: inline-block; font
 .btn-add:hover { background: #059669; }
 .btn-theme { background: transparent; color: var(--text-main); border: 2px solid var(--border); padding: 10px 15px; border-radius: 8px; font-weight: bold; font-size: 1rem; }
 .btn-theme:hover { border-color: var(--primary); color: var(--primary); }
+
+.btn-danger-outline { background: transparent; color: var(--danger); border: 2px solid var(--danger); padding: 12px 20px; border-radius: 10px; font-weight: bold; width: 100%; max-width: 400px; }
+.btn-danger-outline:hover { background: var(--danger); color: white; }
+
+.btn-edit { background: #0ea5e9; border: none; padding: 8px 15px; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; }
+.btn-delete { background: #ef4444; border: none; padding: 8px 15px; color: white; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
 /* الإشعارات */
 .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--success); color: white; padding: 15px 30px; border-radius: 50px; font-weight: 900; font-size: 1.1rem; opacity: 0; pointer-events: none; transition: 0.4s; z-index: 1000; box-shadow: 0 10px 20px rgba(0,0,0,0.2);}
